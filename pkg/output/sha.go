@@ -18,7 +18,6 @@ func GenerateShaSum(content *io.ReadCloser, algo int) (string, error) {
 	case 256:
 		sha = crypto.SHA256.New()
 	case 384:
-	default:
 		sha = crypto.SHA384.New()
 	}
 
