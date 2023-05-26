@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "output",
+    srcs = [
+        "output.go",
+        "sha.go",
+    ],
+    importpath = "github.com/mgred/tool-versions-generator/pkg/output",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/github"],
+)

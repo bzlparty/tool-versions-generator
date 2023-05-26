@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "tvg_lib",
+    srcs = [
+        "app.go",
+        "flags.go",
+        "main.go",
+        "utils.go",
+    ],
+    importpath = "github.com/mgred/tool-versions-generator/cmd/tvg",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/github",
+        "//pkg/output",
+    ],
+)
+
+go_binary(
+    name = "tvg",
+    embed = [":tvg_lib"],
+    visibility = ["//visibility:public"],
+)

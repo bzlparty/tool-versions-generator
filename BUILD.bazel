@@ -1,0 +1,9 @@
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/mgred/tool-versions-generator
+gazelle(name = "gazelle")
+
+alias(
+    name = "tvg",
+    actual = "//cmd/tvg:tvg",
+)
