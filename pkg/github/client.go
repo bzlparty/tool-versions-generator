@@ -2,6 +2,7 @@ package github
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -59,7 +60,7 @@ func (gac *GithubAssetsClient) DownloadAsset(id int64) (content io.ReadCloser, e
 	return
 }
 
-func (gac *GithubAssetsClient) GetReleases(count int) (results []*gh.RepositoryRelease) {
+func (gac *GithubAssetsClient) GetReleases(count int) (results []*gh.RepositoryRelease, err error) {
 	perPage := defaultPerPage
 	if count > maxPerPage {
 		perPage = maxPerPage
@@ -68,11 +69,15 @@ func (gac *GithubAssetsClient) GetReleases(count int) (results []*gh.RepositoryR
 	for {
 		ctx := context.Background()
 		releases, response, err := gac.github.Repositories.ListReleases(ctx, gac.Owner, gac.Repo, options)
+
+		if response.StatusCode != 200 {
+			return results, errors.New(fmt.Sprintf("StatusCode '%d' not accepted, returned from %s %s", response.StatusCode, response.Request.Method, response.Request.URL))
+		}
+
 		options.Page = response.NextPage
 
 		if err != nil {
-			fmt.Println(err)
-			break
+			return results, err
 		}
 
 		if len(releases) == 0 {
@@ -82,7 +87,7 @@ func (gac *GithubAssetsClient) GetReleases(count int) (results []*gh.RepositoryR
 		results = append(results, releases[:]...)
 
 		if len(results) >= count {
-			return results[:count]
+			return results[:count], nil
 		}
 
 		// if the size of the current list of releases is lesser than the count per

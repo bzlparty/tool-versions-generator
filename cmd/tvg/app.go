@@ -20,8 +20,12 @@ var (
 
 func RunApp() error {
 	client := github.NewGithubAssetsClient(repo, token)
-	releases := client.GetReleases(count)
+	releases, err := client.GetReleases(count)
 	platformAssets := github.MapReleasesToPlatformAssetsByVersion(releases, platforms)
+
+	if err != nil {
+		return err
+	}
 
 	for _, assets := range platformAssets {
 		for i := 0; i < len(assets); i++ {
