@@ -1,4 +1,4 @@
-module github.com/mgred/tool-versions-generator
+module github.com/bzlparty/tool-versions-generator
 
 go 1.19
 

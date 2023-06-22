@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mgred/tool-versions-generator/pkg/github"
-	"github.com/mgred/tool-versions-generator/pkg/output"
+	"github.com/bzlparty/tool-versions-generator/pkg/github"
+	"github.com/bzlparty/tool-versions-generator/pkg/output"
 )
 
 var (

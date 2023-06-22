@@ -4,7 +4,7 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/mgred/tool-versions-generator/pkg/github"
+	"github.com/bzlparty/tool-versions-generator/pkg/github"
 )
 
 const OUTPUT_TEMPLATE = `# This file was generated from https://github.com/{{.Repo}}/releases

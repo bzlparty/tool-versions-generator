@@ -5,7 +5,7 @@ This tool generates a `TOOL_VERSIONS` dict (in Starlark) to be used in a [`versi
 Build:
 
 ```bash
-go build github.com/mgred/tool-versions-generator/cmd/tvg
+go build github.com/bzlparty/tool-versions-generator/cmd/tvg
 ```
 
 For [`oak`](https://github.com/thesephist/oak):
