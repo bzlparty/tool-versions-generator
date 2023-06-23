@@ -2,7 +2,9 @@
 
 This tool generates a `TOOL_VERSIONS` dict (in Starlark) to be used in a [`versions.bzl`](https://github.com/bazel-contrib/rules-template/blob/main/mylang/private/versions.bzl) file from release assets of a github repository.
 
-Build:
+Download binaries from the [release page](https://github.com/bzlparty/tool-versions-generator/releases).
+
+Build from source:
 
 ```bash
 go build github.com/bzlparty/tool-versions-generator/cmd/tvg
